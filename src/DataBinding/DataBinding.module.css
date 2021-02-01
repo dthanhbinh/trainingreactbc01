@@ -1,0 +1,10 @@
+.textGreen {
+  color: green;
+  background: black;
+  padding: 20px;
+  font-weight: 700;
+}
+
+.txt-light {
+  color: white;
+}

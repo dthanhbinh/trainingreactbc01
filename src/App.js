@@ -1,23 +1,26 @@
 import logo from './logo.svg';
 import './App.css';
+import HeaderFunc from './components/HeaderFunc';
+import HeaderClass from './components/HeaderClass';
+import BaiTapLayout from './components/BaiTapLayout/BaiTapLayout';
+import BTHeader from './components/BaiTapLayout/BTHeader';
+import BTSlider from './components/BaiTapLayout/BTSlider';
+import BTProductPhone from './components/BaiTapLayout/BTProductPhone';
+import BTProductLaptop from './components/BaiTapLayout/BTProductLaptop';
+import BTPromotion from './components/BaiTapLayout/BTPromotion';
+import BTProductList from './components/BaiTapLayout/BTProductList';
+import DataBinding from './DataBinding/DataBinding';
+import BTLRHeader from './components/BaiTapLayoutReact/BTLRHeader';
+import BTLRFooter from './components/BaiTapLayoutReact/BTLRFooter';
+import BTLRProductlist from './components/BaiTapLayoutReact/BTLRProductlist';
+import BTLRContent from './components/BaiTapLayoutReact/BTLRContent';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+     <BTLRHeader/>
+     <BTLRContent/>
+     <BTLRFooter/>
     </div>
   );
 }
