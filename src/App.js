@@ -14,6 +14,7 @@ import BTLRHeader from "./components/BaiTapLayoutReact/BTLRHeader";
 import BTLRFooter from "./components/BaiTapLayoutReact/BTLRFooter";
 import BTLRProductlist from "./components/BaiTapLayoutReact/BTLRProductlist";
 import BTLRContent from "./components/BaiTapLayoutReact/BTLRContent";
+import BaiTapChonXe from "./StateReact/BaiTapChonXe";
 
 function App() {
   return (
