@@ -15,11 +15,17 @@ import BTLRFooter from "./components/BaiTapLayoutReact/BTLRFooter";
 import BTLRProductlist from "./components/BaiTapLayoutReact/BTLRProductlist";
 import BTLRContent from "./components/BaiTapLayoutReact/BTLRContent";
 import BaiTapChonXe from "./StateReact/BaiTapChonXe";
+import RenderWithMap from "./RenderWithMap/RenderWithMap";
+import BaiTapRenderWithMap from "./RenderWithMap/BaiTapRenderWithMap";
+import DemoProps from "./Props/DemoProps";
 
 function App() {
   return (
     <div className="App">
-      <BaiTapChonXe />
+      {/* <BaiTapChonXe /> */}
+      {/* <RenderWithMap /> */}
+      {/* <BaiTapRenderWithMap /> */}
+      <DemoProps />
     </div>
   );
 }
