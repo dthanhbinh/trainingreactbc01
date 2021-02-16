@@ -18,6 +18,7 @@ import BaiTapChonXe from "./StateReact/BaiTapChonXe";
 import RenderWithMap from "./RenderWithMap/RenderWithMap";
 import BaiTapRenderWithMap from "./RenderWithMap/BaiTapRenderWithMap";
 import DemoProps from "./Props/DemoProps";
+import BaiTapThuKinh from "./BaiTapStatePropThuKinh/BaiTapThuKinh";
 
 function App() {
   return (
@@ -25,7 +26,8 @@ function App() {
       {/* <BaiTapChonXe /> */}
       {/* <RenderWithMap /> */}
       {/* <BaiTapRenderWithMap /> */}
-      <DemoProps />
+      {/* <DemoProps /> */}
+      <BaiTapThuKinh />
     </div>
   );
 }
