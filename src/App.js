@@ -19,15 +19,18 @@ import RenderWithMap from "./RenderWithMap/RenderWithMap";
 import BaiTapRenderWithMap from "./RenderWithMap/BaiTapRenderWithMap";
 import DemoProps from "./Props/DemoProps";
 import BaiTapThuKinh from "./BaiTapStatePropThuKinh/BaiTapThuKinh";
+import DemoQuanLySanPham from "./Props/DemoQuanLySanPham/DemoQuanLySanPham";
 
 function App() {
   return (
     <div className="App">
+      {/* <BaiTapLayout /> */}
       {/* <BaiTapChonXe /> */}
       {/* <RenderWithMap /> */}
       {/* <BaiTapRenderWithMap /> */}
       {/* <DemoProps /> */}
-      <BaiTapThuKinh />
+      {/* <BaiTapThuKinh /> */}
+      <DemoQuanLySanPham />
     </div>
   );
 }

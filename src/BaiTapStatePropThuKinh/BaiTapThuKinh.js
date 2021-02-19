@@ -78,47 +78,14 @@ export default class BaiTapThuKinh extends Component {
     ],
   };
 
-  changeGlass = (glass, name, desc) => {
+  changeGlass = (index) => {
     this.setState({
-      url: `./glassesImage/v${glass}.png`,
-      name: `${name}`,
-      desc: `${desc}`,
+      arrGlass: [...this.state.arrGlass],
     });
   };
-  renderGlass = () => {
-    return (
-      <div>
-        <img
-          id="glassesDetail"
-          style={{
-            position: "absolute",
-            left: 65,
-            top: 150,
-            width: "320px",
-            height: "125px",
-            opacity: "0.8",
-          }}
-          src={this.state.arrGlass.url}
-        />
-        <div
-          id="glassesInfo"
-          className="vglasses__info"
-          style={{
-            position: "absolute",
-            left: 0,
-            bottom: 0,
-            width: "450px",
-            height: "150px",
-          }}
-        >
-          <div style={{ backgroundColor: "#fdbd8ecc" }}>
-            <h2>{this.state.arrGlass.name}</h2>
-            <p>{this.state.arrGlass.desc}</p>
-          </div>
-        </div>
-      </div>
-    );
-  };
+  // renderGlass = () => {
+  //   let index = this.state.arrGlass.findIndex()
+  // };
   render() {
     return (
       <div>
@@ -142,6 +109,7 @@ export default class BaiTapThuKinh extends Component {
                   backgroundPosition: "center",
                   width: "450px",
                   left: 400,
+                  backgroundRepeat: "no-repeat",
                 }}
                 className="vglasses__model"
                 id="avatar"
@@ -157,7 +125,7 @@ export default class BaiTapThuKinh extends Component {
                       height: "125px",
                       opacity: "0.8",
                     }}
-                    src={this.state.arrGlass.url}
+                    src={this.state.arrGlass[0].url}
                   />
                   <div
                     id="glassesInfo"
@@ -171,8 +139,8 @@ export default class BaiTapThuKinh extends Component {
                     }}
                   >
                     <div style={{ backgroundColor: "#fdbd8ecc" }}>
-                      <h2>{this.state.arrGlass.name}</h2>
-                      <p>{this.state.arrGlass.desc}</p>
+                      <h2>{this.state.arrGlass[0].name}</h2>
+                      <p>{this.state.arrGlass[0].desc}</p>
                     </div>
                   </div>
                 </div>
