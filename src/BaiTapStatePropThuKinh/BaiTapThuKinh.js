@@ -1,7 +1,17 @@
 import React, { Component } from "react";
 
 export default class BaiTapThuKinh extends Component {
-  arrProduct = [
+  state = {
+    glass: {
+      id: 1,
+      price: 30,
+      name: "GUCCI G8850U",
+      url: "./glassesImage/v1.png",
+      desc:
+        "Light pink square lenses define these sunglasses, ending with amother of pearl effect tip. ",
+    },
+  };
+  arrGlass = [
     {
       id: 1,
       price: 30,
@@ -75,27 +85,8 @@ export default class BaiTapThuKinh extends Component {
         "Light pink square lenses define these sunglasses, ending with amother of pearl effect tip. ",
     },
   ];
-
-  changeGlass = (glass, name, desc) => {
-    this.setState({
-      url: `./img/glassesImage/g${glass}.jpg`,
-      // ten: `${name}`,
-      // desc: `${desc}`,
-    });
-  };
-  renderGlassInfo = () => {
-    const arrGlassInfo = this.arrProduct.map((glass, index) => {
-      return (
-        <div key={index} style={{ backgroundColor: "#fdbd8ecc" }}>
-          <h2>{glass.name}</h2>
-          <p>{glass.desc}</p>
-        </div>
-      );
-    });
-    return arrGlassInfo;
-  };
   renderGlass = () => {
-    const arrGlass = this.arrProduct.map((glass, index) => {
+    return this.arrGlass.map((glass, index) => {
       return (
         <div key={index} className="col-2">
           <img
@@ -103,24 +94,30 @@ export default class BaiTapThuKinh extends Component {
               width: "100%",
               cursor: "pointer",
             }}
-            src={`./img/${glass.url}`}
+            src={glass.url}
             alt={glass.url}
-            onClick={(gl) => {
-              this.changeGlass(gl.id);
-              this.renderGlassInfo(gl.name);
+            onClick={() => {
+              this.changeGlass(glass);
+              console.log(glass);
             }}
           />
         </div>
       );
     });
-    return arrGlass;
   };
+
+  changeGlass = (index) => {
+    this.setState({
+      glass: index,
+    });
+  };
+
   render() {
     return (
       <div>
         <div
           style={{
-            background: `url('./img/glassesImage/background.jpg')`,
+            background: `url('./glassesImage/background.jpg')`,
             backgroundPosition: "center",
             backgroundSize: "cover",
           }}
@@ -133,39 +130,46 @@ export default class BaiTapThuKinh extends Component {
               <div
                 style={{
                   position: "relative",
-                  backgroundImage: `url('./img/glassesImage/model.jpg')`,
+                  backgroundImage: `url('./glassesImage/model.jpg')`,
                   height: "600px",
                   backgroundPosition: "center",
                   width: "450px",
                   left: 400,
+                  backgroundRepeat: "no-repeat",
                 }}
                 className="vglasses__model"
                 id="avatar"
               >
-                <img
-                  id="glassesDetail"
-                  style={{
-                    position: "absolute",
-                    left: 65,
-                    top: 150,
-                    width: "320px",
-                    height: "125px",
-                    opacity: "0.8",
-                  }}
-                  src="./img/glassesImage/v1.png"
-                />
-                <div
-                  id="glassesInfo"
-                  className="vglasses__info"
-                  style={{
-                    position: "absolute",
-                    left: 0,
-                    bottom: 0,
-                    width: "450px",
-                    height: "150px",
-                  }}
-                >
-                  {/* {this.renderGlassInfo()} */}
+                <div>
+                  <img
+                    id="glassesDetail"
+                    style={{
+                      position: "absolute",
+                      left: 65,
+                      top: 150,
+                      width: "320px",
+                      height: "125px",
+                      opacity: "0.8",
+                    }}
+                    src={this.state.glass.url}
+                  />
+                  <div
+                    id="glassesInfo"
+                    className="vglasses__info"
+                    style={{
+                      position: "absolute",
+                      left: 0,
+                      bottom: 0,
+                      width: "450px",
+                      height: "150px",
+                      backgroundColor: "#fdbd8ecc",
+                    }}
+                  >
+                    <div style={{ backgroundColor: "#fdbd8ecc" }}>
+                      <h2>{this.state.glass.name}</h2>
+                      <p>{this.state.glass.desc}</p>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
