@@ -29,8 +29,8 @@ function App() {
       {/* <RenderWithMap /> */}
       {/* <BaiTapRenderWithMap /> */}
       {/* <DemoProps /> */}
-      <BaiTapThuKinh />
-      {/* <DemoQuanLySanPham /> */}
+      {/* <BaiTapThuKinh /> */}
+      <DemoQuanLySanPham />
     </div>
   );
 }

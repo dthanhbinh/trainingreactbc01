@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import GioHang from "./GioHang";
 import SPDemo from "./SPDemo";
 
 export default class DemoQuanLySanPham extends Component {
@@ -15,6 +16,15 @@ export default class DemoQuanLySanPham extends Component {
       giaBan: "",
       hinhAnh: "",
     }, //Dùng obj lữu trũ thông tin đt chi tiết
+    gioHang: [
+      {
+        maSP: 1,
+        hinhAnh: "./img/applephone.jpg",
+        tenSP: "Iphone",
+        gia: 1000,
+        soLuong: 1,
+      },
+    ],
   };
 
   mangSanPham = [
@@ -61,7 +71,11 @@ export default class DemoQuanLySanPham extends Component {
     return this.mangSanPham.map((sp, index) => {
       return (
         <div key={index} classname="col-4">
-          <SPDemo sanPham={sp} xemCT={this.xemChiTiet} />
+          <SPDemo
+            sanPham={sp}
+            xemCT={this.xemChiTiet}
+            themGioHang={this.themGioHang}
+          />
           {/* <div className="card text-left ml-3">
             <img
               className="card-img-top"
@@ -86,6 +100,30 @@ export default class DemoQuanLySanPham extends Component {
       );
     });
   };
+  //hàm xử lý làm thay đổi state sẽ đặt tại component chứa state
+  themGioHang = (spClick) => {
+    //Sau khi click thì tạo ra 1 sp giống object trong giỏ hàng
+    let spGH = {
+      maSP: spClick.maSP,
+      hinhAnh: spClick.hinhAnh,
+      tenSP: spClick.tenSP,
+      gia: spClick.giaBan,
+      soLuong: 1,
+    };
+    let gioHangUpdate = [...this.state.gioHang];
+    //Xử lý kiểm tra state giỏ hàng có chứa dữ liệu sp đó khi click chưa => nếu có thì tăng số lương, không có thì thêm vào
+    let indexSPGH = gioHangUpdate.findIndex((sp) => sp.maSP === spClick.maSP);
+    if (indexSPGH !== -1) {
+      //Tìm thấy vị trí index
+      gioHangUpdate[indexSPGH].soLuong += 1;
+    } else {
+      gioHangUpdate.push(spGH);
+    }
+    // let gioHangUpdate = [...this.state.gioHang,spGH];
+    this.setState({
+      gioHang: gioHangUpdate,
+    });
+  };
 
   xemChiTiet = (click) => {
     //setState
@@ -94,6 +132,43 @@ export default class DemoQuanLySanPham extends Component {
       spChiTiet: click,
     });
   };
+  xoaGioHang = (spXoa) => {
+    let gioHangUpdate = [...this.state.gioHang];
+    console.log(gioHangUpdate);
+    //Xử lý kiểm tra state giỏ hàng có chứa dữ liệu sp đó khi click chưa => nếu có thì xoá
+    let indexSPGH = gioHangUpdate.findIndex((sp) => sp.maSP === spXoa.maSP);
+    gioHangUpdate.splice(indexSPGH, 1);
+    console.log(gioHangUpdate);
+    //setState xoá
+    this.setState({
+      gioHang: gioHangUpdate,
+    });
+  };
+  // tangSL = (spTang) => {
+  //   let gioHangUpdate = [...this.state.gioHang];
+  //   //Xử lý kiểm tra state giỏ hàng có chứa dữ liệu sp đó khi click chưa => nếu có thì tăng số lương, không có thì thêm vào
+  //   let indexSPGH = gioHangUpdate.findIndex((sp) => sp.maSP === spTang.maSP);
+  //   gioHangUpdate.splice(indexSPGH, 1);
+  //   //setState xoá
+  //   this.setState({
+  //     gioHang: gioHangUpdate,
+  //   });
+  // };
+  // giamSL = (spGiam) => {
+  //   let gioHangUpdate = [...this.state.gioHang];
+  //   //Xử lý kiểm tra state giỏ hàng có chứa dữ liệu sp đó khi click chưa => nếu có thì tăng số lương, không có thì thêm vào
+  //   let indexSPGH = gioHangUpdate.findIndex((sp) => sp.maSP === spGiam.maSP);
+  //   if (indexSPGH !== -1) {
+  //     //Tìm thấy vị trí index
+  //     gioHangUpdate[indexSPGH].soLuong += 1;
+  //   } else {
+  //     gioHangUpdate.splice(indexSPGH);
+  //   }
+  //   //setState xoá
+  //   this.setState({
+  //     gioHang: gioHangUpdate,
+  //   });
+  // };
   render() {
     let {
       hinhAnh,
@@ -108,6 +183,8 @@ export default class DemoQuanLySanPham extends Component {
     } = this.state.spChiTiet;
     return (
       <div className="container">
+        <h1 className="mt-2">Giỏ hàng</h1>
+        <GioHang gioHang={this.state.gioHang} xoaGioHang={this.xoaGioHang} />
         <h3 className="text-center display-4">Danh Sách Sản Phẩm</h3>
         <div className="row">{this.renderSP()}</div>
         <div className="row mt-5">
