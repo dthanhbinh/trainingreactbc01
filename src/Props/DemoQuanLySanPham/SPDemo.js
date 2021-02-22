@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 export default class SPDemo extends Component {
   render() {
-    let { sanPham, xemCT } = this.props;
+    let { sanPham, xemCT, themGioHang } = this.props;
     return (
       <div>
         <div className="card text-left ml-3">
@@ -22,6 +22,14 @@ export default class SPDemo extends Component {
               className="btn btn-success"
             >
               Xem Chi Tiết
+            </button>
+            <button
+              onClick={() => {
+                themGioHang(sanPham);
+              }}
+              className="btn btn-danger"
+            >
+              Thêm vào giỏ hàng
             </button>
           </div>
         </div>
