@@ -135,25 +135,34 @@ export default class DemoQuanLySanPham extends Component {
   xoaGioHang = (spXoa) => {
     let gioHangUpdate = [...this.state.gioHang];
     console.log(gioHangUpdate);
-    //Xử lý kiểm tra state giỏ hàng có chứa dữ liệu sp đó khi click chưa => nếu có thì xoá
-    let indexSPGH = gioHangUpdate.findIndex((sp) => sp.maSP === spXoa.maSP);
-    gioHangUpdate.splice(indexSPGH, 1);
-    console.log(gioHangUpdate);
+    //Xử lý kiểm tra state giỏ hàng có chứa dữ liệu sp đó khi click chưa => nếu có thì xoá;
+    // let indexSPGH = gioHangUpdate.findIndex((sp) => sp.maSP === spXoa.maSP);
+    // gioHangUpdate.splice(indexSPGH, 1);
+    // console.log(gioHangUpdate);
+    gioHangUpdate = gioHangUpdate.filter((spGH) => spGH.maSP !== spXoa);
     //setState xoá
     this.setState({
       gioHang: gioHangUpdate,
     });
   };
-  // tangSL = (spTang) => {
-  //   let gioHangUpdate = [...this.state.gioHang];
-  //   //Xử lý kiểm tra state giỏ hàng có chứa dữ liệu sp đó khi click chưa => nếu có thì tăng số lương, không có thì thêm vào
-  //   let indexSPGH = gioHangUpdate.findIndex((sp) => sp.maSP === spTang.maSP);
-  //   gioHangUpdate.splice(indexSPGH, 1);
-  //   //setState xoá
-  //   this.setState({
-  //     gioHang: gioHangUpdate,
-  //   });
-  // };
+  tanggiamSL = (maSP, soLuong) => {
+    let gioHangUpdate = [...this.state.gioHang];
+    //Tìm ra sp trong giỏ hàng dựa vào mã sp
+    let index = gioHangUpdate.findIndex((spGH) => spGH.maSP === maSP);
+    //Tăng giảm số lượng
+    if (index !== -1) {
+      gioHangUpdate[index].soLuong += soLuong;
+      if (gioHangUpdate[index].soLuong <= 0) {
+        alert("Số lượng không hợp lệ!");
+        gioHangUpdate[index].soLuong -= soLuong;
+        return;
+      }
+    }
+    //setState tăng sl
+    this.setState({
+      gioHang: gioHangUpdate,
+    });
+  };
   // giamSL = (spGiam) => {
   //   let gioHangUpdate = [...this.state.gioHang];
   //   //Xử lý kiểm tra state giỏ hàng có chứa dữ liệu sp đó khi click chưa => nếu có thì tăng số lương, không có thì thêm vào
@@ -184,7 +193,11 @@ export default class DemoQuanLySanPham extends Component {
     return (
       <div className="container">
         <h1 className="mt-2">Giỏ hàng</h1>
-        <GioHang gioHang={this.state.gioHang} xoaGioHang={this.xoaGioHang} />
+        <GioHang
+          gioHang={this.state.gioHang}
+          xoaGioHang={this.xoaGioHang}
+          tanggiamSL={this.tanggiamSL}
+        />
         <h3 className="text-center display-4">Danh Sách Sản Phẩm</h3>
         <div className="row">{this.renderSP()}</div>
         <div className="row mt-5">

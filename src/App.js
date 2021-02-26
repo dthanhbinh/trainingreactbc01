@@ -20,6 +20,7 @@ import BaiTapRenderWithMap from "./RenderWithMap/BaiTapRenderWithMap";
 import DemoProps from "./Props/DemoProps";
 import BaiTapThuKinh from "./BaiTapStatePropThuKinh/BaiTapThuKinh";
 import DemoQuanLySanPham from "./Props/DemoQuanLySanPham/DemoQuanLySanPham";
+import BTGioHangRedux from "./DemoRedux/BTGioHangRedux/BTGioHangRedux";
 
 function App() {
   return (
@@ -30,7 +31,8 @@ function App() {
       {/* <BaiTapRenderWithMap /> */}
       {/* <DemoProps /> */}
       {/* <BaiTapThuKinh /> */}
-      <DemoQuanLySanPham />
+      {/* <DemoQuanLySanPham /> */}
+      <BTGioHangRedux />
     </div>
   );
 }

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 export default class GioHang extends Component {
   render() {
-    let { gioHang, xoaGioHang } = this.props;
+    let { gioHang, xoaGioHang, tanggiamSL } = this.props;
     return (
       <div className="container">
         <table className="table">
@@ -26,13 +26,32 @@ export default class GioHang extends Component {
                   <th>
                     <img src={spGH.hinhAnh} width="50" height="50" />
                   </th>
-                  <th>{spGH.soLuong}</th>
+                  <th>
+                    <button
+                      className="btn btn-primary"
+                      onClick={() => {
+                        tanggiamSL(spGH.maSP, 1);
+                      }}
+                    >
+                      +
+                    </button>
+                    {spGH.soLuong}
+                    <button
+                      className="btn btn-primary"
+                      onClick={() => {
+                        tanggiamSL(spGH.maSP, -1);
+                      }}
+                    >
+                      -
+                    </button>
+                  </th>
                   <th>{spGH.gia}</th>
                   <th>{spGH.gia * spGH.soLuong}</th>
                   <th>
                     <button
                       onClick={() => {
-                        xoaGioHang(spGH);
+                        // xoaGioHang(spGH);
+                        xoaGioHang(spGH.maSP);
                       }}
                       className="btn btn-danger"
                     >
@@ -43,8 +62,22 @@ export default class GioHang extends Component {
               );
             })}
           </tbody>
+          <tfoot>
+            <tr>
+              <td colSpan="5"></td>
+              <td>Tổng tiền</td>
+              <td>{this.tinhTongTien()}</td>
+            </tr>
+          </tfoot>
         </table>
       </div>
     );
   }
+  tinhTongTien = () => {
+    let tongTien = this.props.gioHang.reduce((tongTien, sp, index) => {
+      tongTien += sp.soLuong * sp.gia;
+      return tongTien;
+    }, 0);
+    return tongTien.toLocaleString();
+  };
 }
