@@ -22,6 +22,7 @@ import BaiTapThuKinh from "./BaiTapStatePropThuKinh/BaiTapThuKinh";
 import DemoQuanLySanPham from "./Props/DemoQuanLySanPham/DemoQuanLySanPham";
 import BTGioHangRedux from "./DemoRedux/BTGioHangRedux/BTGioHangRedux";
 import BaiTapGameXucXac from "./DemoRedux/BaiTapGameXucXac/BaiTapGameXucXac";
+import BaiTapGameKeoBuaBao from "./BaiTapGameKeoBuaBao/BaiTapGameKeoBuaBao";
 
 function App() {
   return (
@@ -34,7 +35,8 @@ function App() {
       {/* <BaiTapThuKinh /> */}
       {/* <DemoQuanLySanPham /> */}
       {/* <BTGioHangRedux /> */}
-      <BaiTapGameXucXac />
+      {/* <BaiTapGameXucXac /> */}
+      <BaiTapGameKeoBuaBao />
     </div>
   );
 }
