@@ -20,10 +20,6 @@ class KeoBuaBao extends Component {
         <img src="./img/player.png" width="150"></img>
         <div>
           {this.props.game.map((chon, index) => {
-            let border = {};
-            if (chon.chon) {
-              border = { border: "2px solid red" };
-            }
             return (
               <button
                 onClick={() => {

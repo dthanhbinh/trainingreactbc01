@@ -62,13 +62,12 @@ const mapStateToProps = (rootReducer) => ({
 const mapDispatchToProps = (dispatch) => {
   return {
     choiGame: (playGame, soBanThang, tongSoBanChoi) => {
-      const action = {
+      dispatch({
         type: "PLAY_GAME",
         playGame,
         soBanThang,
         tongSoBanChoi,
-      };
-      dispatch(action);
+      });
     },
   };
 };

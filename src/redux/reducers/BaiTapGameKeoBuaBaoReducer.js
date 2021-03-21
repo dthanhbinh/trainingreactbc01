@@ -2,13 +2,14 @@ const stateDefault = {
   soBanThang: 0,
   tongSoBanChoi: 0,
   mangKBB: [
-    { ma: 1, hinhAnh: "./img/keo.png", chon: true },
-    { ma: 2, hinhAnh: "./img/bua.png", chon: false },
-    { ma: 3, hinhAnh: "./img/bao.png", chon: false },
+    { ma: "keo", hinhAnh: "./img/keo.png", chon: true },
+    { ma: "bua", hinhAnh: "./img/bua.png", chon: false },
+    { ma: "bao", hinhAnh: "./img/bao.png", chon: false },
   ],
   mangRandom: {
-    ma: 1,
+    ma: "keo",
     hinhAnh: "./img/keo.png",
+    chon: true,
   },
 };
 
@@ -29,6 +30,7 @@ export const gameKeoBuaBaoReducer = (state = stateDefault, action) => {
       state.mangKBB = mangChon;
       return { ...state };
     }
+
     case "PLAY_GAME": {
       let kqNgauNhien = Math.floor(Math.random() * 3);
       let mangNgauNhien = state.mangKBB[kqNgauNhien];
@@ -36,35 +38,13 @@ export const gameKeoBuaBaoReducer = (state = stateDefault, action) => {
       let player = state.mangKBB.find((item) => item.chon === true);
       let computer = state.mangRandom;
       console.log(player, computer);
-      // switch (player.ma) {
-      //   case "keo":
-      //     {
-      //       if (computer.ma === "bua") {
-      //         state.soBanThang += 1;
-      //       } else {
-      //         return state.soBanThang;
-      //       }
-      //     }
-      //     break;
-      //   case "bua":
-      //     {
-      //       if (computer.ma === "bao") {
-      //         state.soBanThang += 1;
-      //       } else {
-      //         return state.soBanThang;
-      //       }
-      //     }
-      //     break;
-      //   case "bao":
-      //     {
-      //       if (computer.ma === "keo") {
-      //         state.soBanThang += 1;
-      //       } else {
-      //         return state.soBanThang;
-      //       }
-      //     }
-      //     break;
-      // }
+      if (
+        (player.ma === "keo" && computer.ma === "bao") ||
+        (player.ma === "bua" && computer.ma === "keo") ||
+        (player.ma === "bao" && computer.ma === "bua")
+      ) {
+        state.soBanThang += 1;
+      }
       state.tongSoBanChoi += 1;
       return { ...state };
     }
